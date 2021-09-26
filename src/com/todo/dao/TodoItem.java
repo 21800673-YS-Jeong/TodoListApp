@@ -65,6 +65,6 @@ public class TodoItem {
     }
 
 	public String toString() {
-		return "[" + cate + "] " + title+ " - " + desc + " - " + " - " + due_date + " - " + current_date;
+		return "[" + cate + "] " + title+ " - " + desc + " - " + due_date + " - " + current_date;
 	}
 }

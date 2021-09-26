@@ -48,9 +48,29 @@ public class TodoUtil {
 		int num = sc.nextInt();
 		
 		if (num <= l.getList().size() && num > 0 ) {
-			l.deleteItem(num - 1);
-			System.out.println("삭제되었습니다.");
+			String check;
+			System.out.println(num + ". " + l.getList().get(num - 1).toString());
+			System.out.print("위 항목을 삭제하시겠습니까? (y/n) > ");
+			
+			do {
+				check = sc.next();
+				
+				switch(check) {
+					case "y":
+						l.deleteItem(num - 1);
+						System.out.println("삭제되었습니다.");
+						break;
+					
+					case "n":
+						break;
+				
+					default:
+						System.out.print("삭제하시려면 \"y\", 삭제하지 않으시려면 \"n\"을 입력하세요. > ");
+						break;
+				}
+			}while(!(check.equals("y") || check.equals("n")));
 		}
+		
 		else {
 			System.out.println("해당 일련번호의 항목을 찾을 수 없습니다.");
 		}
@@ -66,7 +86,10 @@ public class TodoUtil {
 		System.out.print("\n[항복 변경]\n" + "변경할 항목의 일련번호를 입력하세요 > ");
 		int num = sc.nextInt();
 		
-		if (num <= l.getList().size() && num > 0 ) l.deleteItem(num - 1);
+		if (num <= l.getList().size() && num > 0 ) {
+			System.out.println(num + ". " + l.getList().get(num - 1).toString());
+			l.deleteItem(num - 1);
+		}
 		else {
 			System.out.println("해당 일련번호의 항목을 찾을 수 없습니다.");
 			return;
@@ -99,7 +122,7 @@ public class TodoUtil {
 		int i = 0;
 		
 		for(TodoItem item : l.getList()) {
-			if(item.getTitle().equals(keyWord) || item.getDesc().equals(keyWord)) {
+			if(item.getTitle().contains(keyWord) || item.getDesc().contains(keyWord)) {
 				System.out.println((l.indexOf(item) + 1) + ". " + item.toString());
 				i++;
 			}
@@ -113,7 +136,7 @@ public class TodoUtil {
 		int i = 0;
 		
 		for(TodoItem item : l.getList()) {			
-			if(item.getCate().equals(keyWord)) {
+			if(item.getCate().contains(keyWord)) {
 				System.out.println((l.indexOf(item) + 1) + ". " + item.toString());
 				i++;
 			}
@@ -143,11 +166,11 @@ public class TodoUtil {
 		    i++;
 		    
 		    if(i != hs.size()) {
-		    	System.out.print("/");
+		    	System.out.print(" / ");
 		    }
 		}
 		
-		System.out.println("총 " + i + "개의 카테고리가 등록되어 있습니다.");
+		System.out.println(" 총 " + i + "개의 카테고리가 등록되어 있습니다.");
 	}
 
 	public static void loadList(TodoList l, String file) throws IOException {
