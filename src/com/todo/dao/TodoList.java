@@ -16,8 +16,8 @@ public class TodoList {
 		list.add(t);
 	}
 
-	public void deleteItem(TodoItem t) {
-		list.remove(t);
+	public void deleteItem(int num) {
+		list.remove(num);
 	}
 
 	void editItem(TodoItem t, TodoItem updated) {

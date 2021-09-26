@@ -6,12 +6,16 @@ import java.util.Date;
 public class TodoItem {
     private String title;
     private String desc;
+    private String cate;
     private String current_date;
+    private String due_date;
 
 
-    public TodoItem(String title, String desc){
+	public TodoItem(String cate, String title, String desc, String due_date){
         this.title=title;
         this.desc=desc;
+        this.cate = cate;
+        this.due_date = due_date;
         SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss");
         this.current_date = f.format(new Date());
     }
@@ -31,6 +35,14 @@ public class TodoItem {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+    
+    public String getCate() {
+		return cate;
+	}
+
+	public void setCate(String cate) {
+		this.cate = cate;
+	}
 
     public String getCurrent_date() {
         return current_date;
@@ -40,11 +52,19 @@ public class TodoItem {
         this.current_date = current_date;
     }
     
+	public String getDue_date() {
+		return due_date;
+	}
+
+	public void setDue_date(String due_date) {
+		this.due_date = due_date;
+	}
+	
     public String toSaveString() {
-    	return title + "##" + desc + "##" + current_date + "\n";
+    	return cate + "##" + title + "##" + desc + "##" + due_date + "##" + current_date + "\n";
     }
 
 	public String toString() {
-		return "[" + title + "] " + desc + " - " + current_date;
+		return "[" + cate + "] " + title+ " - " + desc + " - " + " - " + due_date + " - " + current_date;
 	}
 }
